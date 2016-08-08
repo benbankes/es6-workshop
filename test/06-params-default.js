@@ -1,6 +1,6 @@
 import test from 'ava';
 
-test.skip('Functions can have default arguments', t => {
+test('Functions can have default arguments', t => {
   // We used to have to explicitly check for undefined:
 
   function foo(arr, sep) {
@@ -24,8 +24,8 @@ test.skip('Functions can have default arguments', t => {
   t.is(bar(['a', 'b', 'c'], "|"), "a|b|c");
 
   // TODO: Write a function, greet, which returns the strings below:
-  function greet(___) {
-    return `__`;
+  function greet(dude = 'world') {
+    return `Hello, ${dude}!`;
   }
 
   // Passing specific parameters works
@@ -37,7 +37,7 @@ test.skip('Functions can have default arguments', t => {
   t.is(greet(undefined), 'Hello, world!');
 });
 
-test.skip('Default parameters get evaluated every time they are needed', t => {
+test('Default parameters get evaluated every time they are needed', t => {
   // Every time a default value is used, it is freshly evaluated.
   function getTime(when = Date.now()) {
     return when;
@@ -57,16 +57,16 @@ test.skip('Default parameters get evaluated every time they are needed', t => {
   }
 
   // TODO: Fill in the blanks. Does each invocation get its own `new Array()`?
-  t.deepEqual(__, push('foo'));
-  t.deepEqual(__, push('bar'));
-  t.deepEqual(__, push('bar', push('foo')));
+  t.deepEqual(['foo'], push('foo'));
+  t.deepEqual(['bar'], push('bar'));
+  t.deepEqual(['foo', 'bar'], push('bar', push('foo')));
 
   // What if we pass in an array?
   let a = new Array();
   push('foo', a);
   push('bar', a);
   push('baz', a);
-  t.deepEqual(__, a); // <-- Fill in the blank
+  t.deepEqual(['foo', 'bar', 'baz'], a); // <-- Fill in the blank
 });
 
 // ============================================================================

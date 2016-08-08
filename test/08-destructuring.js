@@ -1,6 +1,6 @@
 import test from 'ava';
 
-test.skip('Destructuring lets you reach inside objects', t => {
+test('Destructuring lets you reach inside objects', t => {
   // Destructuring objects lets you pluck values out of them.
 
   let { x } = { x: 24, y: 25, z: 26 };
@@ -16,14 +16,14 @@ test.skip('Destructuring lets you reach inside objects', t => {
   let colors = { red: '#ff0000', green: '#00ff00', blue: '#0000ff' };
 
   // TODO: Fill in the blank, selecting only red and blue from of the object.
-  let { __ } = colors;
+  let { red, blue } = colors;
 
   t.is(red, '#ff0000');
   t.is(blue, '#0000ff');
   t.throws(() => green); // <-- `green` should remain undefined
 });
 
-test.skip('Destructuring lets you reach inside arrays', t => {
+test('Destructuring lets you reach inside arrays', t => {
   // Destructuring arrays is similar, but uses parameter order instead of names.
 
   let [ first ] = ['gold', 'silver', 'broze'];
@@ -34,7 +34,7 @@ test.skip('Destructuring lets you reach inside arrays', t => {
 
   let ary = [ 'foo', 'bar', 'baz', 'qux' ];
 
-  let [ __ ] = ary;
+  let [a, b, ...c] = ary;
 
   t.is(a, 'foo');
   t.is(b, 'bar');

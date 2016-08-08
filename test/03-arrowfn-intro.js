@@ -1,28 +1,28 @@
 import test from 'ava';
 
-test.skip('`=>` is shorthand for a function', t => {
+test('`=>` is shorthand for a function', t => {
   // ES2015 introduces `=>` as a shorthand for creating functions.
 
   let greet = function(who) { return 'Hello, ' + who; }
   t.is(greet('world'), 'Hello, world');
 
   // TODO: Fill in the blanks
-  let bye = (__) => { return ___; }
+  let bye = (world) => { return 'Goodbye, ' + world; }
   t.is(bye('world'), 'Goodbye, world');
 });
 
-test.skip('`=>` without `{}` implicitly returns', t => {
+test('`=>` without `{}` implicitly returns', t => {
   // If you omit the `{ }` braces, arrow functions implicitly return results.
 
   let greet = (who) => 'Hello, ' + who;
   t.is(greet('world'), 'Hello, world');
 
   // TODO: Fill in the blanks
-  let bye = (__) => ___;
+  let bye = (who) => 'Hello, ' + who;
   t.is(bye('world'), 'Hello, world');
 });
 
-test.skip('Exercise: Re-writing a filter chain', t => {
+test('Exercise: Re-writing a filter chain', t => {
   // Generated with https://github.com/marak/faker.js <-- Super neat project
   let inventory = [
     { product: "Table", material: "Metal",    price: 61.64, qty: 3 },
@@ -61,7 +61,11 @@ test.skip('Exercise: Re-writing a filter chain', t => {
 
   // TODO: Re-write the chain of filters above.
   // Don't use `function` or `return`. Use `=>` instead.
-  let arrowChairs = ___
+  let arrowChairs = inventory
+      .filter((x) => x.product === 'Chair')
+      .filter((x) => x.qty >= 4)
+      .sort((a, b) => a.price >= b.price ? -1 : 1)
+      .map((x) => x.material);
 
   t.deepEqual(arrowChairs, ['Steel', 'Concrete', 'Wood']);
 });

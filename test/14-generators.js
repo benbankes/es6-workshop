@@ -1,6 +1,6 @@
 import test from 'ava';
 
-test.skip('Generator functions use special `function*` / `yield` syntax', t => {
+test('Generator functions use special `function*` / `yield` syntax', t => {
   // Functions can only `return` once. Generators can `yield` many times.
   function* forever(x) {
     while (true) { // <-- Infinite loop! OK since generators are "lazy"
@@ -26,29 +26,33 @@ test.skip('Generator functions use special `function*` / `yield` syntax', t => {
 
   let rvals = [];
   for (let i = 0; i < 5; i++) {
-    // Your Code Here
+    rvals.push(ones.next().value);
   }
 
   t.deepEqual(rvals, [1, 1, 1, 1, 1]);
 });
 
-test.skip('Exercise: Create a generator that yields fixed values', t => {
+test('Exercise: Create a generator that yields fixed values', t => {
   // Write a generator that yields 'a', then 'b', then 'c', and then stops.
 
   function* abcs() {
-    // Your Code Here.
-    // Hint: Try the simplest thing that might work...
+  yield 'a';
+  yield 'b';
+  yield 'c';
   }
 
   t.deepEqual(Array.from(abcs()), ['a', 'b', 'c']);
 });
 
-test.skip('Exercise: Create a generator counts to Infinity', t => {
+test('Exercise: Create a generator counts to Infinity', t => {
   // Write a generator that yield 1, then 2, then 3, and never stops.
 
   function* count() {
-    // Your Code Here.
-    // Hint: Remember, generators are stateful. It's pausing and resuming.
+  let a = 1;
+  while (true) {
+    yield a;
+    a++;
+  }
   }
 
   let rvals = [];

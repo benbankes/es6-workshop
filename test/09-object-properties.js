@@ -1,6 +1,6 @@
 import test from 'ava';
 
-test.skip('Review: Property access on objects', t => {
+test('Review: Property access on objects', t => {
   // Object properties can be any string
 
   let person = {
@@ -16,25 +16,25 @@ test.skip('Review: Property access on objects', t => {
 
   // You can also use variables with the `[string]` notation.
 
-  let key = __;
+  let key = 'twitter';
   t.is(person[key], '@callahad');
 
   // Or even evaluate expressions.
-  t.is(person['full' + ' ' + __], 'Dan Callahan');
+  t.is(person['full' + ' ' + 'name'], 'Dan Callahan');
 });
 
-test.skip('Objects gained `[]` syntax for generating key names', t => {
+test('Objects gained `[]` syntax for generating key names', t => {
   // Just like the example above, you can now use `[]` when defining keys.
 
   // TODO: Read the rest of this test, then fill in the blank
-  let key = __;
+  let key = 'Test';
 
   // TODO: Fill in the two blanks
   // Remember: Strings have .toLowerCase() and .toUppercase() methods...
   let obj = {
     [key]: 'Foo',
-    [key.__]: 'Bar',
-    [key.__]: 'Baz',
+    [key.toLowerCase()]: 'Bar',
+    [key.toUpperCase()]: 'Baz',
   };
 
   t.deepEqual(obj, {
@@ -44,7 +44,7 @@ test.skip('Objects gained `[]` syntax for generating key names', t => {
   });
 });
 
-test.skip('Object property / values pairs have a new shorthand', t => {
+test('Object property / values pairs have a new shorthand', t => {
   // Do you ever end up repeating yourself when constructing objects?
 
   let name = 'Dan';
@@ -60,14 +60,14 @@ test.skip('Object property / values pairs have a new shorthand', t => {
   let bar = { name, browser };
 
   // TODO: Fill in the blanks
-  t.is(bar.__, 'Dan');
-  t.is(bar.__, 'Firefox');
+  t.is(bar.name, 'Dan');
+  t.is(bar.browser, 'Firefox');
 
   // The results are the same:
   t.deepEqual(foo, bar);
 });
 
-test.skip('Objects now have shorthand for declaring methods', t => {
+test('Objects now have shorthand for declaring methods', t => {
   // Named functions can be declared directly on objects, avoiding boilerplate.
 
   let utils = {
@@ -86,7 +86,7 @@ test.skip('Objects now have shorthand for declaring methods', t => {
 
   let guestbook = {
     guests: [],
-    sign: (name) => { this.guests.push(name) },
+    sign(name) {this.guests.push(name)},
   }
 
   try {

@@ -1,6 +1,6 @@
 import test from 'ava';
 
-test.skip('Review: prototypes as classes', t => {
+test('Review: prototypes as classes', t => {
   // JavaScript has always had prototypal inheritance, which looks like classes.
   function Greeter(who) {
     this.who = who;
@@ -22,13 +22,13 @@ test.skip('Review: prototypes as classes', t => {
 
   Greeter.prototype.hello = function() { return `Hi, ${this.who}`; };
 
-  t.is(world.hello(), __);
-  t.is(mwc.hello(), __);
+  t.is(world.hello(), 'Hi, world');
+  t.is(mwc.hello(), 'Hi, MinneWebCon');
 
   t.true(mwc instanceof Greeter);
 });
 
-test.skip('There is a new `class` definition syntax', t => {
+test('There is a new `class` definition syntax', t => {
   // All that `prototype` stuff is verbose and error-prone.
   // Thankfully, ES6 has new syntax!
 
@@ -38,6 +38,24 @@ test.skip('There is a new `class` definition syntax', t => {
     // Note: Don't use commas between method definitions.
     // Hint: Try using the object literal function shorthand we just learned!
     // Hint: Don't forget about getters and setters, too!
+
+  constructor(name, alias, power) {
+    this.name = name;
+    this.theAlias = alias;
+    this.power = power;
+  }
+
+  desc() {
+    return this.name + ', A.K.A. "' + this.theAlias.toUpperCase() + '", has ' + this.power;
+  }
+
+  set alias(alias) {
+    this.theAlias = alias.toUpperCase();
+  }
+
+  get alias() {
+    return this.theAlias;
+  }
   }
 
   let hulk = new Superhero('Bruce Banner', 'The Hulk', 'superhuman strength');
@@ -53,7 +71,7 @@ test.skip('There is a new `class` definition syntax', t => {
   t.is(cap.alias, 'THE CAPTAIN');
 });
 
-test.skip('Classes can have instance and static properties', t => {
+test('Classes can have instance and static properties', t => {
   class Num {
     constructor(x) {
       this.value = x;
@@ -62,6 +80,31 @@ test.skip('Classes can have instance and static properties', t => {
     isEven() { return this.value % 2 === 0; };
 
     static get PI() { return 3.14; };
+
+    static abs(value) {
+    return Math.abs(value);
+  }
+
+  fizzbuzz() {
+    let isFizz = this.value % 3 === 0;
+    let isBuzz = this.value % 5 === 0;
+
+    if (!isFizz && !isBuzz) {
+      return this.value;
+    }
+
+    let fizzbuzz = '';
+
+    if (isFizz) {
+      fizzbuzz += 'Fizz';
+    }
+
+    if (isBuzz) {
+      fizzbuzz += 'Buzz';
+    }
+
+    return fizzbuzz;
+  }
   }
 
   let one = new Num(1);
@@ -98,7 +141,7 @@ test.skip('Classes can have instance and static properties', t => {
   t.is(sixteen.fizzbuzz(), 16);
 });
 
-test.skip('Classes can extend other classes', t => {
+test('Classes can extend other classes', t => {
   class Rectangle {
     constructor(length, width, height) {
       this.length = length;
@@ -112,6 +155,19 @@ test.skip('Classes can extend other classes', t => {
   }
 
   class Cube extends Rectangle {
+    constructor(side) {
+      super(side, side, side);
+    }
+
+    get sides() {
+      return this.length;
+    }
+
+    set sides(sides) {
+      this.length = sides;
+      this.width = sides;
+      this.height = sides;
+    }
     // Your Task: Define a constructor for the square.
     // Hint: use `super(...)` to access the parent class's constructor.
     //

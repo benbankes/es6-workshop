@@ -1,6 +1,6 @@
 import test from 'ava';
 
-test.skip('Objects now have shorthand for property getters and setters', t => {
+test('Objects now have shorthand for property getters and setters', t => {
   // Getters/setters were in ES5, but the syntax was cumbersome. This is nice.
 
   let party = {
@@ -20,8 +20,8 @@ test.skip('Objects now have shorthand for property getters and setters', t => {
   function create_person(inches) {
     return {
       actual: inches,
-
-      // TODO: Your methods go in here...
+      get height() { return (this.actual >= 72) ? this.actual : this.actual + 1},
+      set height(height) { throw new Error('No cheating')}
     }
   }
 

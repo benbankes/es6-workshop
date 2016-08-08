@@ -1,6 +1,6 @@
 import test from 'ava';
 
-test.skip('Review: JavaScript has `for in` loops', t => {
+test('Review: JavaScript has `for in` loops', t => {
   // ES5 defined `for in` loops to iterate through property names
 
   // It works on arrays...
@@ -10,7 +10,7 @@ test.skip('Review: JavaScript has `for in` loops', t => {
     array_result.push(i);
   }
 
-  t.deepEqual(array_result, __); // <-- What is the result?
+  t.deepEqual(array_result, ['0', '1', '2']); // <-- What is the result?
 
   // Strings can be accessed like Arrays, so maybe you can use them, too?
 
@@ -22,7 +22,7 @@ test.skip('Review: JavaScript has `for in` loops', t => {
     str_result.push(x);
   }
 
-  t.deepEqual(str_result, __); // <-- What is the result?
+  t.deepEqual(str_result, ['0', '1', '2', '3', '4']); // <-- What is the result?
 
   // It works on objects, too.
   
@@ -31,10 +31,10 @@ test.skip('Review: JavaScript has `for in` loops', t => {
     obj_result.push(p);
   }
 
-  t.deepEqual(obj_result, __); // <-- What is the result?
+  t.deepEqual(obj_result, ['x', 'y', 'z']); // <-- What is the result?
 });
 
-test.skip('ES6 adds new `for of` loops, which are similar.', t => {
+test('ES6 adds new `for of` loops, which are similar.', t => {
   // The syntax is almost exactly the same
 
   // It works on arrays...
@@ -44,7 +44,7 @@ test.skip('ES6 adds new `for of` loops, which are similar.', t => {
     array_result.push(x);
   }
 
-  t.deepEqual(array_result, __); // <-- What is the result?
+  t.deepEqual(array_result, ['foo', 'bar', 'baz']); // <-- What is the result?
 
   // And also strings...
 
@@ -53,7 +53,7 @@ test.skip('ES6 adds new `for of` loops, which are similar.', t => {
     str_result.push(x);
   }
 
-  t.deepEqual(str_result, __); // <-- What is the result?
+  t.deepEqual(str_result, ['h', 'e', 'l', 'l', 'o']); // <-- What is the result?
 
   // But what about Objects?
 
@@ -66,14 +66,14 @@ test.skip('ES6 adds new `for of` loops, which are similar.', t => {
     }
 
    // Will this get called, and if so, what is the result?
-    t.deepEqual(obj_result, __);
+    t.deepEqual(obj_result, ['Foo', 'Bar', 'Baz']);
   } catch (e) {
     // Or will this get called? Why?
     t.regex(e.message, /is not iterable/);
   }
 });
 
-test.skip('Objects can be iterated using helpers', t => {
+test('Objects can be iterated using helpers', t => {
   // Okay, so objects can't be naively iterated.
   // Maybe there is a helper that would give us something iterable?
   // Hint: Review the docs at:
@@ -82,7 +82,7 @@ test.skip('Objects can be iterated using helpers', t => {
   let obj = {x: 'Foo', y: 'Bar', z: 'Baz' };
 
   let ks = [];
-  for (let k of __) { // <-- Fill in the blank
+  for (let k of Object.keys(obj)) { // <-- Fill in the blank
     ks.push(k);
   }
 

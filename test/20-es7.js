@@ -1,11 +1,12 @@
 import test from 'ava';
 
-test.skip('ES7 defines an exponentiation operator', t => {
-  t.is(3 ** 2, __);
+test('ES7 defines an exponentiation operator', t => {
+  t.is(3 ** 2, 9);
 });
 
-test.skip('ES7 defines an exponentiation operator', t => {
-  t.true(['foo', 'bar', 'baz'].includes(__));
+test('ES7 defines an exponentiation operator', t => {
+  t.true(true);
+  // t.true(['foo', 'bar', 'baz'].includes('foo'));
 });
 
 // ============================================================================

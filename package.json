@@ -7,8 +7,8 @@
   "repository": "callahad/es6-workshop",
   "bugs": "https://github.com/callahad/es6-workshop/issues",
   "scripts": {
-    "test": "ava --timeout=5s",
-    "watch": "ava --timeout=5s --verbose --watch"
+    "test": "ava --timeout=10s",
+    "watch": "ava --timeout=10s --verbose --watch"
   },
   "author": "Dan Callahan <dan.callahan@gmail.com>",
   "license": "MIT",
